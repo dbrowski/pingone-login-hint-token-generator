@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>PingOne MFA utilities</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="public/styles.css" type="text/css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+  <script src="public/login_hint_token.js"></script>
+</head>
+
+<body>
+    <br>
+    <br>
+    <h3 align="center">Generate login_hint_token</h3>
+
+    <div align="center" id="login_hint_token" class="tabcontent">
+      <form align="center" id="form" onsubmit="return false;" method="POST">
+        <br>
+        <br>
+        <tt>
+          <label>PROD</label>
+          <input type="radio" id="na" name="geo" value="na" checked>
+          <label for="na">NA</label>
+          <input type="radio" id="eu" name="geo" value="eu">
+          <label for="eu">EU</label>
+          <input type="radio" id="ap" name="geo" value="ap">
+          <label for="ap">AP</label>
+          <br>
+          <label for="ort">ORT </label>
+          <input type="radio" id="ort" name="geo" value="ort">
+          <br>  
+          <label for="test">TEST</label>
+          <input type="radio" id="test" name="geo" value="test">
+        </tt>
+        <br>
+        <input type="text" id="envid" name="envid" style="width: 350px;" placeholder="env ID here...">
+        <br>
+        <input type="text" id="appid" name="appid" style="width: 350px;" placeholder="app ID here...">
+        <br>
+        <input type="text" id="appsecret" name="appsecret" style="width: 350px;" placeholder="app secret here...">
+        <br>
+        <input type="text" id="userid" name="userid" style="width: 350px;" placeholder="user ID/name here...">
+        <br>
+        <br>
+        <input onclick="execute('login_hint_token');" type="submit" name="login_hint_token" value="Generate" title="Generate a login_hint_token for use in PingOne MFA & MyAccount">
+      </form>
+    </div>
+    <br>
+    <div align="center" id="result" class="tabresult">
+      <table>
+        <tr>
+          <td>
+            <label id="lht_result_label" class="labelresult">LOGIN_HINT_TOKEN</label>
+            <span id="myaccount_result" name="myaccount_result" class="textresult" readonly></span>
+            <textarea id="lht_result" name="lht_result" class="textresult" readonly></textarea>
+          </td>
+        <br>
+      </table>
+    </div>
+    <div class='helptext'>
+        <label>If MyAccount fails to open, check:</label>
+        <ol style='margin-top: 6px;'>
+          <li>The user is enabled and MFA is enabled for the user</li>
+          <li>The app is enabled</li>
+          <li>You chose the right geography (NA, EU, AP, ORT, TEST)</li>
+        </ol>
+    </div>
+</body>
+</html>

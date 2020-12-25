@@ -1,0 +1,90 @@
+body {font-family: Arial;}
+
+/* Style the tab */
+.tab {
+  width: 50%;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+  margin: auto;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+  width: 50%;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: block;
+  margin: 0 auto; /* align to center */
+  width: 550px;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+}
+
+.tabresult {
+  display: block;
+  margin: 0 auto; /* align to center */
+  width: 550px;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+}
+
+.labelresult {
+  width: 350px;
+  margin: 6px 12px;
+}
+
+.helptext {
+  width: 550px;
+  margin: 0 auto; /* align to center */
+  margin-top: 6px;
+}
+
+.textresult {
+  width: 350px;
+  height: 150px;
+  word-break: break-all;
+  white-space: normal;
+}
+
+input[type=text] {
+  margin: 6px 12px;
+}
+
+textarea#lht_result {
+  margin: 6px 12px;
+  resize: none;
+}
+
+textarea#myaccount_result {
+  margin: 6px 12px;
+  resize: none;
+}
+
+table {
+  width: 350px;
+}
+
+div.textresult {
+  margin: 6px 12px;
+}
