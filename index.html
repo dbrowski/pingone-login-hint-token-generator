@@ -53,19 +53,22 @@
         <tr>
           <td>
             <label id="lht_result_label" class="labelresult">LOGIN_HINT_TOKEN</label>
-            <span id="myaccount_result" name="myaccount_result" class="textresult" readonly></span>
+            <span id="myaccount_result" name="myaccount_result" class="textresult" readonly>
+                <span>
+                  <i style='font-size: 14px; font-display: block; cursor: pointer;' class="material-icons" onClick={copyLoginHintToken()}>content_copy
+                  </i>
+                </span>
+                <a id="myaccount_href" target='_blank' style='margin-left: 20px; margin-right: 5px' href=''>MyAccount
+                    <i style='font-size: 14px' class="material-icons">open_in_new</i></a>
+                <span>
+                  <i id="tooltip_icon" style='font-size: 14px; margin-left: 6px; cursor: pointer;' class="material-icons" onclick="showTooltip();">info_outline </i>
+                  <span class="helptext"></span>
+                </span>
+            </span>
             <textarea id="lht_result" name="lht_result" class="textresult" readonly></textarea>
           </td>
         <br>
       </table>
-    </div>
-    <div class='helptext'>
-        <label>If MyAccount fails to open, check:</label>
-        <ol style='margin-top: 6px;'>
-          <li>The user is enabled and MFA is enabled for the user</li>
-          <li>The app is enabled</li>
-          <li>You chose the right geography (NA, EU, AP, ORT, TEST)</li>
-        </ol>
     </div>
 </body>
 </html>

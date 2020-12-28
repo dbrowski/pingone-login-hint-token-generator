@@ -11,11 +11,8 @@ function execute() {
 
 function showResult(result) {
   $('#lht_result').val(result['login_hint_token']);
-  const html = `<i style='font-size: 14px; font-display: block; cursor: pointer;' class="material-icons" onClick={copyLoginHintToken()}>content_copy</i>` + 
-               `<a target='_blank' style='margin-left: 20px; margin-right: 5px' href='${result['myaccount']}'>MyAccount <i style='font-size: 14px' class="material-icons">open_in_new</i></a>`;
-
-  $("#myaccount_result").empty();
-  $("#myaccount_result").append(html);
+  $('#myaccount_href').attr('href', result['myaccount']);
+  $("#myaccount_result").css('visibility', 'visible');
 }
 
 function generate (envId, appId, appSecret, userId, geo) {
@@ -107,8 +104,29 @@ function copyLoginHintToken() {
   
     /* Copy the text inside the text field */
     document.execCommand("copy");
-  
-    /* Alert the copied text */
-    alert("Copied the text: " + copyText.value);
-  }
-  
+}
+
+function showTooltip() {
+    const textHtml = 
+        'If MyAccount fails to open, check:<br>' + 
+        ' 1. The user is enabled and MFA is enabled for the user<br>' +
+        ' 2. The app is enabled<br>' +
+        ' 3. You selected the right geography (NA, EU, AP, ORT, TEST)<br>';
+    if ($('.helptext').css('visibility') != 'visible') {
+        $('.helptext').css('visibility', 'visible');
+        $('.helptext').html(`<span>${textHtml}</span>`);
+    } else {
+        $('.helptext').css('visibility', 'hidden');
+    }
+}
+
+$(document).ready(function(){
+    $(document).on('keyup',function(evt) {
+        $('.helptext').css('visibility', 'hidden');
+    });
+    $(document).on('mouseup',function(evt) {
+        if (evt.target['id'] != 'tooltip_icon') {
+            $('.helptext').css('visibility', 'hidden');
+        }
+    });
+});
