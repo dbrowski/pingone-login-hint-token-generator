@@ -3,10 +3,8 @@ import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
 import TextField from "@material-ui/core/TextField";
-import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import Link from "@material-ui/core/Link";
-import Popover from "@material-ui/core/Popover";
 import Typography from "@material-ui/core/Typography";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import Radio from "@material-ui/core/Radio";
@@ -132,8 +130,6 @@ export default function App() {
   const handleClose = () => {};
 
   const execute = () => {
-    var url;
-    var data;
     var result = generate(
       $("#envid").val(),
       $("#appid").val(),
@@ -255,7 +251,7 @@ export default function App() {
       " 1. The user is enabled and MFA is enabled for the user<br>" +
       " 2. The app is enabled<br>" +
       " 3. You selected the right geography (NA, EU, AP, ORT, TEST)<br>";
-    if ($(".helptext").css("visibility") != "visible") {
+    if ($(".helptext").css("visibility") !== "visible") {
       $(".helptext").css("visibility", "visible");
       $(".helptext").html(`<span>${textHtml}</span>`);
     } else {
@@ -268,7 +264,7 @@ export default function App() {
       $(".helptext").css("visibility", "hidden");
     });
     $(document).on("mouseup", function (evt) {
-      if (evt.target["id"] != "tooltip_icon") {
+      if (evt.target["id"] !== "tooltip_icon") {
         $(".helptext").css("visibility", "hidden");
       }
     });
