@@ -4,6 +4,12 @@ import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
+import InputLabel from "@mui/material/InputLabel";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import IconButton from "@material-ui/core/IconButton";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Link from "@material-ui/core/Link";
 import Typography from "@material-ui/core/Typography";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
@@ -71,6 +77,12 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     fontSize: "2rem",
   },
+  customInputLabel: {
+    "& legend": {
+      visibility: "visible",
+    },
+    margin: theme.spacing(0, 0, 1),
+  },
 }));
 
 export default function App() {
@@ -81,6 +93,7 @@ export default function App() {
   const [appID, setAppID] = useState("");
   const [envID, setEnvID] = useState("");
   const [appSecret, setAppSecret] = useState("");
+  const [showSecret, setShowSecret] = useState(false);
   const [userID, setUserID] = useState("");
   const [geo, setGeo] = useState("NA");
   const [loginHintToken, setLoginHintToken] = useState("");
@@ -124,6 +137,14 @@ export default function App() {
   const handleGeoChange = (event) => {
     event.preventDefault();
     setGeo(event.target.value);
+  };
+
+  const handleClickShowPassword = (event) => {
+    setShowSecret(!showSecret);
+  };
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
   };
 
   const generate = (envId, appId, appSecret, userId, geo) => {
@@ -268,7 +289,7 @@ export default function App() {
           style={{ flex: "10 1 auto" }}
         >
           <form className={classes.form} noValidate onSubmit={handleSubmit}>
-            <FormControl component="fieldset" fullWidth>
+            <FormControl fullWidth>
               <Grid
                 item
                 className={classes.input}
@@ -344,14 +365,31 @@ export default function App() {
                 />
               </Grid>
               <Grid item className={classes.input}>
-                <TextField
-                  id="app-secret"
+                <OutlinedInput
+                  id="outlined-adornment-app-secret"
                   label="Application Secret"
+                  placeholder="Application Secret *"
                   variant="outlined"
                   value={appSecret}
                   onChange={handleAppSecretChange}
+                  classes={{
+                    focused: classes.customInputLabel,
+                  }}
                   fullWidth
                   required
+                  type={showSecret ? "text" : "password"}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                        edge="end"
+                      >
+                        {showSecret ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  }
                 />
               </Grid>
               <Grid item className={classes.input}>
