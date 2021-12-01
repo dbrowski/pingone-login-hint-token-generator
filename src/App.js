@@ -7,6 +7,7 @@ import Grid from "@material-ui/core/Grid";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import IconButton from "@material-ui/core/IconButton";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Link from "@material-ui/core/Link";
@@ -82,6 +83,12 @@ const useStyles = makeStyles((theme) => ({
     },
     margin: theme.spacing(0, 0, 1),
   },
+  token: {
+    color: "green",
+    "& .MuiInputBase-root": {
+      color: "green",
+    },
+  },
 }));
 
 export default function App() {
@@ -144,6 +151,10 @@ export default function App() {
 
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
+  };
+
+  const handleCopyButtonClick = () => {
+    navigator.clipboard.writeText(loginHintToken);
   };
 
   const generate = (envId, appId, appSecret, userId, geo) => {
@@ -244,7 +255,7 @@ export default function App() {
   const helperText2 = " 1. The user is enabled and MFA is enabled for the user";
   const helperText3 = " 2. The app is enabled";
   const helperText4 =
-    " 3. You selected the right geography (NA, EU, AP, ORT, TEST)";
+    " 3. You selected the right geography (NA, EU, AP, CA, ORT, TEST)";
 
   // $(document).ready(function () {
   //   $(document).on("keyup", function (evt) {
@@ -414,15 +425,33 @@ export default function App() {
                   Generate
                 </Button>
               </Grid>
-              <Grid item className={classes.input}>
-                <TextField
-                  id="login-hint-token"
-                  label="Login Hint Token"
-                  variant="outlined"
-                  value={loginHintToken}
-                  multiline
-                  fullWidth
-                />
+              <Grid item container>
+                <Grid item style={{ flexGrow: 1 }}>
+                  <TextField
+                    id="login-hint-token"
+                    label="Login Hint Token"
+                    variant="outlined"
+                    value={loginHintToken}
+                    color="success"
+                    className={classes.token}
+                    multiline
+                    fullWidth
+                  />
+                </Grid>
+                <Grid
+                  item
+                  className={classes.input}
+                  style={{ flexGrow: 0, alignSelf: "center" }}
+                >
+                  <IconButton
+                    aria-label="copy"
+                    onClick={() => {
+                      handleCopyButtonClick();
+                    }}
+                  >
+                    <ContentCopyIcon />
+                  </IconButton>
+                </Grid>
               </Grid>
               <FormHelperText>{helperText1}</FormHelperText>
               <FormHelperText>{helperText2}</FormHelperText>
